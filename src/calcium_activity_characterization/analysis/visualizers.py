@@ -1254,14 +1254,15 @@ def plot_points_mean_std(
     x_axis_boundaries: tuple[float, float] | None = None,
     log_y: bool = False,
     mean_color: str | None = None,               # Single color for all mean±std
-    mean_palette: str | list[str] | None = None, # NEW: color each x-category (e.g., "tab10")
+    mean_palette: str | list[str] | None = None, # Color each x-category
     save_svg_path: str | Path | None = None,
     export_format: str = "svg",
 ) -> None:
     """
     Plot optional raw points plus a mean±std overlay per x-category.
     - No connecting line between category means.
-    - `mean_palette` colors each category differently; otherwise use `mean_color` (or default).
+    - `mean_palette` colors each x-category differently; otherwise use `mean_color` (or default).
+    - Logs the sample size N for each x-category (or overall if `x=None`).
 
     Args:
         df: Tidy DataFrame with columns `y` and optionally `x`.
@@ -1320,6 +1321,26 @@ def plot_points_mean_std(
             except Exception as e:
                 logger.exception("plot_points_mean_std: outlier filtering failed — continuing without: %s", e)
 
+        # === NEW: Log N per x-category (or overall if x is None) ===
+        try:
+            if x is None:
+                n_total = int(work[y].notna().sum())
+                logger.info("plot_points_mean_std: N=%d points (single group)", n_total)
+            else:
+                # Count valid y per category to match plotting data exactly
+                counts = (
+                    work[[x, y]]
+                    .assign(_valid=work[y].notna())
+                    .groupby(x, dropna=False)["_valid"]
+                    .sum()
+                    .astype(int)
+                    .sort_index()
+                )
+                for cat, n_cat in counts.items():
+                    logger.info("plot_points_mean_std: N=%d for %s=%s", n_cat, x, cat)
+        except Exception as e:
+            logger.exception("plot_points_mean_std: failed to log N per x: %s", e)
+
         fig, ax = plt.subplots(figsize=figsize)
 
         # Optional raw points
@@ -1334,23 +1355,21 @@ def plot_points_mean_std(
 
         # === Mean ± std (no connecting line) ===
         try:
-            # If a palette is provided, color each x-category separately by mapping hue=x
             if mean_palette is not None:
-                # New seaborn (>=0.12): errorbar="sd"; else fallback to estimator/ci
                 try:
                     sns.pointplot(
                         data=work,
                         x=x,
                         y=y,
-                        hue=x,          # color per category
+                        hue=x,
                         palette=mean_palette,
-                        dodge=False,        # overplot at same x position
-                        join=False,         # NO LINES
+                        dodge=False,
+                        join=False,         # no lines
                         markers="o",
                         capsize=0.1,
                         errorbar="sd",
                         ax=ax,
-                        legend=False,       # suppress duplicate legend
+                        legend=False,
                     )
                 except TypeError:
                     sns.pointplot(
@@ -1368,9 +1387,7 @@ def plot_points_mean_std(
                         ax=ax,
                         legend=False,
                     )
-
             else:
-                # Single-color (or default) seaborn pointplot, with join=False to avoid lines
                 try:
                     sns.pointplot(
                         data=work,
@@ -1379,12 +1396,11 @@ def plot_points_mean_std(
                         errorbar="sd",
                         markers="o",
                         capsize=0.1,
-                        linestyles='none',       
+                        linestyles="none",
                         ax=ax,
-                        color=mean_color,    # None -> default
+                        color=mean_color,
                     )
                 except TypeError:
-                    # Older seaborn
                     sns.pointplot(
                         data=work,
                         x=x,
@@ -1393,7 +1409,7 @@ def plot_points_mean_std(
                         ci="sd",
                         markers="o",
                         capsize=0.1,
-                        join=False,          # <- no connecting line
+                        join=False,
                         ax=ax,
                         color=mean_color,
                     )
@@ -1429,7 +1445,7 @@ def plot_points_mean_std(
                 plt.savefig(
                     out_path,
                     format=fmt,
-                    transparent=False, 
+                    transparent=False,
                     facecolor="white",
                     bbox_inches="tight",
                     metadata={"Creator": "plot_points_mean_std"},
@@ -1442,7 +1458,6 @@ def plot_points_mean_std(
     except Exception as e:
         logger.exception("plot_points_mean_std failed: %s", e)
         return None
-
 def plot_points_mean_std_continuous(
     df: pd.DataFrame,
     x: str,
