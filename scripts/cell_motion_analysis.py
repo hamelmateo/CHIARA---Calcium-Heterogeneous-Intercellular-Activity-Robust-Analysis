@@ -296,7 +296,7 @@ def create_cellmotion_overlay_from_cells(
                 path,
                 edgecolor="red",
                 facecolor=[0.5, 0.5, 0.5],
-                hatch="/////////",
+                hatch="///////",
                 linewidth=0.2,
                 zorder=3,
                 label="Overlap"
