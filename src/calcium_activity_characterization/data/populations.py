@@ -87,7 +87,7 @@ class Population:
 
         crop_h = int(height * roi_scale)
         crop_w = int(width * roi_scale)
-        if roi_centered:
+        if not roi_centered:
             start_h = 0
             start_w = 0
             end_h = crop_h

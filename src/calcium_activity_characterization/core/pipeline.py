@@ -174,8 +174,8 @@ class CalciumPipeline:
         """
         #TODO: Complete docstring
         """
-        if self.raw_cells_path.exists():
-        #if False:  # Disable reloading for debugging purposes
+        #if self.raw_cells_path.exists():
+        if False:  # Disable reloading for debugging purposes
             self.population = load_pickle_file(self.raw_cells_path)
             return
 
@@ -367,8 +367,8 @@ class CalciumPipeline:
         Compute raw calcium traces for all cells in the population.
         If raw traces already exist, load them from file.
         """
-        if self.raw_traces_path.exists():
-        #if False:  # Disable reloading for debugging purposes
+        #if self.raw_traces_path.exists():
+        if False:  # Disable reloading for debugging purposes
             self.population = load_pickle_file(self.raw_traces_path)
             return
         
@@ -442,7 +442,7 @@ class CalciumPipeline:
             cell.trace.save_versions_as_svg(self.traces_processing_steps / f"{cell.label}_all_traces.svg")
             cell.trace.plot_binary_trace(self.traces_processing_steps / f"{cell.label}_binary_trace.svg")
             cell.trace.plot_peaks_over_trace(self.traces_processing_steps / f"{cell.label}_detected_peaks.svg")
-            """
+        """
 
 
     def _initialize_activity_trace(self) -> None:

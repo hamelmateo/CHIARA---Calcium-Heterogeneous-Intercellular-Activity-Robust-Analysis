@@ -728,9 +728,9 @@ def get_all_image_sequences() -> list[dict]:
             "time": "+1800s"
         },
         {
-            "path": "D:/Mateo/20250701/Output/IS5",
+            "path": "D:/Mateo/20250701/Output/IS6",
             "date": "20250701",
-            "image_sequence": "IS5",
+            "image_sequence": "IS6",
             "experiment_type": "stimulated",
             "condition": "ACH - 1st run",
             "confluency": 1200000,

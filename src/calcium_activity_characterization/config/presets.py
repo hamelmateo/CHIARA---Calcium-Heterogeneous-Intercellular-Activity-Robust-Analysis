@@ -51,7 +51,7 @@ HOECHST_IMAGE_PROCESSING_CONFIG = ImageProcessingConfig(
     ),
     padding_digits=5,
     roi_scale=0.75,
-    roi_centered=False,
+    roi_centered=True,
     hot_pixel_cleaning=HotPixelParameters(
         method=HotPixelMethod.CLIP,
         use_auto_threshold=False,
@@ -70,7 +70,7 @@ FITC_IMAGE_PROCESSING_CONFIG = ImageProcessingConfig(
     ),
     padding_digits=5,
     roi_scale=0.75,
-    roi_centered=False,
+    roi_centered=True,
     hot_pixel_cleaning=HOTPIXEL_CONFIG
 )
 
