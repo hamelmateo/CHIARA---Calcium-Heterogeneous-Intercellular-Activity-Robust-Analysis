@@ -34,7 +34,7 @@ def main(input_dir: Path, output_dir: Path) -> None:
         ),
         padding_digits=5,
         roi_scale=0.75,
-        roi_centered=False,
+        roi_centered=True,
         hot_pixel_cleaning=HotPixelParameters(
             method=HotPixelMethod.CLIP,           # "replace" or "clip"
             static_threshold=50000,                   # used if auto threshold disabled
@@ -53,30 +53,12 @@ def main(input_dir: Path, output_dir: Path) -> None:
     # Collect all tif images (case-insensitive)
     #image_paths = list(input_dir.glob("*.tif")) + list(input_dir.glob("*.TIF"))
     image_paths = [
-        Path("D:/Mateo/20250409/Data/IS10/FITC/20250409__w3FITC_t01723.TIF"),
-        Path("D:/Mateo/20250409/Data/IS10/FITC/20250409__w3FITC_t01725.TIF"),
-        Path("D:/Mateo/20250409/Data/IS10/FITC/20250409__w3FITC_t01727.TIF"),
-        Path("D:/Mateo/20250409/Data/IS10/FITC/20250409__w3FITC_t01735.TIF"),
-        Path("D:/Mateo/20250409/Data/IS10/FITC/20250409__w3FITC_t01737.TIF"),
-        Path("D:/Mateo/20250409/Data/IS10/FITC/20250409__w3FITC_t01739.TIF"),
-        Path("D:/Mateo/20250409/Data/IS10/FITC/20250409__w3FITC_t01741.TIF"),
-        Path("D:/Mateo/20250409/Data/IS10/FITC/20250409__w3FITC_t01743.TIF"),
-        Path("D:/Mateo/20250409/Data/IS10/FITC/20250409__w3FITC_t01745.TIF"),
-        Path("D:/Mateo/20250409/Data/IS10/FITC/20250409__w3FITC_t01747.TIF"),
-        Path("D:/Mateo/20250409/Data/IS10/FITC/20250409__w3FITC_t01749.TIF"),
-        Path("D:/Mateo/20250409/Data/IS10/FITC/20250409__w3FITC_t01751.TIF"),
-        Path("D:/Mateo/20250409/Data/IS10/FITC/20250409__w3FITC_t01753.TIF"),
-        Path("D:/Mateo/20250409/Data/IS10/FITC/20250409__w3FITC_t01755.TIF"),
-        Path("D:/Mateo/20250409/Data/IS10/FITC/20250409__w3FITC_t01757.TIF"),
-        Path("D:/Mateo/20250409/Data/IS10/FITC/20250409__w3FITC_t01759.TIF"),
-        Path("D:/Mateo/20250409/Data/IS10/FITC/20250409__w3FITC_t01761.TIF"),
-        Path("D:/Mateo/20250409/Data/IS10/FITC/20250409__w3FITC_t01763.TIF"),
-        Path("D:/Mateo/20250409/Data/IS10/FITC/20250409__w3FITC_t01765.TIF"),
-        Path("D:/Mateo/20250409/Data/IS10/FITC/20250409__w3FITC_t01767.TIF"),
-        Path("D:/Mateo/20250409/Data/IS10/FITC/20250409__w3FITC_t01769.TIF"),
-        Path("D:/Mateo/20250409/Data/IS10/FITC/20250409__w3FITC_t01771.TIF"),
-        Path("D:/Mateo/20250409/Data/IS10/FITC/20250409__w3FITC_t01773.TIF"),
-        Path("D:/Mateo/20250409/Data/IS10/FITC/20250409__w3FITC_t01775.TIF"),
+        Path("D:/Mateo/20250409/Data/IS11/FITC/20250409__w3FITC_t01178.TIF"),
+        Path("D:/Mateo/20250409/Data/IS11/FITC/20250409__w3FITC_t01204.TIF"),
+        Path("D:/Mateo/20250409/Data/IS11/FITC/20250409__w3FITC_t01217.TIF"),
+        Path("D:/Mateo/20250409/Data/IS11/FITC/20250409__w3FITC_t01241.TIF"),
+        Path("D:/Mateo/20250409/Data/IS11/FITC/20250409__w3FITC_t01327.TIF"),
+        Path("D:/Mateo/20250409/Data/IS11/FITC/20250409__w3FITC_t01357.TIF"),
     ]
 
     if not image_paths:
