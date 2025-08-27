@@ -26,6 +26,35 @@ from calcium_activity_characterization.data.peaks import Peak
 
 from calcium_activity_characterization.logger import logger
 
+import matplotlib as mpl
+
+# Version-safe rc update (only keys supported by your Matplotlib)
+_rc = {
+    "pdf.fonttype": 42,
+    "ps.fonttype": 42,
+    "svg.fonttype": "none",      # keep SVG text editable
+    "text.usetex": False,
+
+    # Lock to Arial only
+    "font.family": "sans-serif",
+    "font.sans-serif": ["Arial"],
+    "axes.unicode_minus": False, # avoid U+2212 (minus) fallback
+
+    # Mathtext in Arial (if you ever use $...$)
+    "mathtext.fontset": "custom",
+    "mathtext.rm": "Arial",
+    "mathtext.it": "Arial:italic",
+    "mathtext.bf": "Arial:bold",
+
+    # Sizes
+    "axes.labelsize": 12,
+    "xtick.labelsize": 10,
+    "ytick.labelsize": 10,
+    "legend.fontsize": 10,
+}
+mpl.rcParams.update({k: v for k, v in _rc.items() if k in mpl.rcParams})
+
+
 class Trace:
     """
     A container for calcium activity trace and analysis results.

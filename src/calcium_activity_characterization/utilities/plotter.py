@@ -4,8 +4,34 @@ import numpy as np
 from pathlib import Path
 import networkx as nx
 from scipy.optimize import curve_fit
-
+import matplotlib as mpl
 # TODO: plot funnctions should return the fig object and be sved in export.py
+
+# Version-safe rc update (only keys supported by your Matplotlib)
+_rc = {
+    "pdf.fonttype": 42,
+    "ps.fonttype": 42,
+    "svg.fonttype": "none",      # keep SVG text editable
+    "text.usetex": False,
+
+    # Lock to Arial only
+    "font.family": "sans-serif",
+    "font.sans-serif": ["Arial"],
+    "axes.unicode_minus": False, # avoid U+2212 (minus) fallback
+
+    # Mathtext in Arial (if you ever use $...$)
+    "mathtext.fontset": "custom",
+    "mathtext.rm": "Arial",
+    "mathtext.it": "Arial:italic",
+    "mathtext.bf": "Arial:bold",
+
+    # Sizes
+    "axes.labelsize": 12,
+    "xtick.labelsize": 10,
+    "ytick.labelsize": 10,
+    "legend.fontsize": 10,
+}
+mpl.rcParams.update({k: v for k, v in _rc.items() if k in mpl.rcParams})
 
 
 def plot_raster(
