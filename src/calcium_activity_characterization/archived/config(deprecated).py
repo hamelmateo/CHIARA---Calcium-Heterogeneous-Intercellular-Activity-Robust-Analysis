@@ -2,9 +2,9 @@
 # FLAGS
 # ==========================
 DEBUGGING = True  # Enable debugging mode
-DEBUGGING_FILE_PATH = "D:/Mateo/20250326/Data/IS1"
+DEBUGGING_FOLDER_PATH = "D:/Mateo/20250326/Data/IS1"
 
-HARDDRIVE_PATH = "D:/Mateo" # Path to the hard drive for file operations
+DATA_DIR = "D:/Mateo" # Path to the hard drive for file operations
 
 # ==========================
 # SEGMENTATION PARAMETERS

@@ -1,7 +1,7 @@
 # config/presets.py
 # Preset configuration instances using structures.py
 
-from .structures import *
+from calcium_activity_characterization.config.structures import *
 
 
 # ===========================
@@ -9,9 +9,10 @@ from .structures import *
 # ===========================
 DEBUG_CONFIG = DebugConfig(
     debugging=False,
-    debugging_file_path="D:/Mateo/20250326/Data/IS1",
-    harddrive_path="D:/Mateo"
+    debugging_folder_path="D:/Mateo/20250326/Data/IS1"
 )
+
+DATA_DIR="D:/Mateo"
 
 # ===========================
 # SEGMENTATION CONFIG
@@ -233,6 +234,7 @@ EXPORT_CONFIG = ExportConfig(
 # ===========================
 GLOBAL_CONFIG = GlobalConfig(
     debug=DEBUG_CONFIG,
+    data_dir=DATA_DIR,
     segmentation=SEGMENTATION_CONFIG,
     image_processing_hoechst=HOECHST_IMAGE_PROCESSING_CONFIG,
     image_processing_fitc=FITC_IMAGE_PROCESSING_CONFIG,

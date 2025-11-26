@@ -36,10 +36,10 @@ def main() -> None:
     app = QApplication(sys.argv)
     if GLOBAL_CONFIG.debug.debugging:
         print("[DEBUGGING MODE] Using test folder from config.")
-        selected = [Path(GLOBAL_CONFIG.debug.debugging_file_path)]
+        selected = [Path(GLOBAL_CONFIG.debug.debugging_folder_path)]
     else:
         folder_dialog = QFileDialog()
-        folder_dialog.setDirectory(str(GLOBAL_CONFIG.debug.harddrive_path))
+        folder_dialog.setDirectory(str(GLOBAL_CONFIG.debug.data_dir))
         folder_dialog.setFileMode(QFileDialog.Directory)
         folder_dialog.setOption(QFileDialog.DontUseNativeDialog, True)
         folder_dialog.setOption(QFileDialog.ShowDirsOnly, True)

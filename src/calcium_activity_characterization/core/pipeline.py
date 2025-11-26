@@ -396,7 +396,6 @@ class CalciumPipeline:
             self.output_dir.mkdir(exist_ok=True, parents=True)
             counter = 1
             for cell in self.population.cells:
-                print(counter)
                 cell.trace.process_and_plot_trace(
                     input_version="raw",
                     output_version="processed",

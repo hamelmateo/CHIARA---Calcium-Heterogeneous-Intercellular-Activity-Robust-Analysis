@@ -15,16 +15,14 @@ import json
 @dataclass
 class DebugConfig:
     """
-    Configuration for debugging paths and environment settings.
+    Configuration for debugging paths.
 
     Attributes:
         debugging (bool): Enable or disable debug mode. Default is True.
-        debugging_file_path (str): Path to a dataset or experiment used for debugging. Default is "D:/Mateo/20250326/Data/IS1".
-        harddrive_path (str): Root hard drive path for accessing data. Default is "D:/Mateo".
+        debugging_folder_path (str): Path to a dataset or experiment used for debugging. Default is "C:/".
     """
     debugging: bool = True
-    debugging_file_path: str = "D:/Mateo/20250326/Data/IS1"
-    harddrive_path: str = "D:/Mateo"
+    debugging_folder_path: str = "C:/"
 
 # ===========================
 # SEGMENTATION PARAMETERS
@@ -803,6 +801,7 @@ class GlobalConfig:
         event_extraction (EventExtractionConfig): Event extraction configuration.
     """
     debug: DebugConfig
+    data_dir: str
     segmentation: SegmentationConfig
     image_processing_hoechst: ImageProcessingConfig
     image_processing_fitc: ImageProcessingConfig

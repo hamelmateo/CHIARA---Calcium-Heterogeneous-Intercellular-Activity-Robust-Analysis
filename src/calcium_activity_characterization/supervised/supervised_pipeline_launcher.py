@@ -28,30 +28,30 @@ class SupervisedPipelineLauncher:
     def __init__(self):
         self.config = GLOBAL_CONFIG
         self.pipeline: CalciumPipeline = None
-        self.data_path: Path = None
+        self.data_dir: Path = None
         self.output_path: Path = None
 
     def start(self):
         self.select_isx_folder()
-        if self.data_path is None:
+        if self.data_dir is None:
             logger.info("No folder selected. Aborting.")
             return
 
         self.ask_parameter_loading()
         self.pipeline = CalciumPipeline(self.config)
-        self.pipeline._init_paths(self.data_path, self.output_path)
+        self.pipeline._init_paths(self.data_dir, self.output_path)
         self.launch_segmentation_gui()
 
     def select_isx_folder(self):
         dialog = QFileDialog()
         dialog.setFileMode(QFileDialog.Directory)
-        dialog.setDirectory(str(GLOBAL_CONFIG.debug.harddrive_path))
+        dialog.setDirectory(str(GLOBAL_CONFIG.debug.data_dir))
         dialog.setWindowTitle("Select an ISX folder (e.g., IS1)")
         if dialog.exec_():
             selected = dialog.selectedFiles()
             if selected:
-                self.data_path = Path(selected[0])
-                self.output_path = self.data_path.parents[1] / "Output" / self.data_path.name
+                self.data_dir = Path(selected[0])
+                self.output_path = self.data_dir.parents[1] / "Output" / self.data_dir.name
                 self.output_path.mkdir(parents=True, exist_ok=True)
 
     def ask_parameter_loading(self):
