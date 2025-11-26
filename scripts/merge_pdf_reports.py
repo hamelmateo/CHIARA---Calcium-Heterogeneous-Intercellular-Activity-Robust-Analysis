@@ -24,7 +24,7 @@ def merge_control_first_run_pdfs(
         output_pdf (Path): Output path for merged PDF
     """
     df = pd.read_csv(csv_path)
-    filtered_df = df[df["condition"] == "control - 1st run"]
+    filtered_df = df[(df["condition"] == "ACH - 1st run")&(df["concentration"]=="10uM")]
 
     merger = PdfMerger()
     added_count = 0
@@ -54,5 +54,5 @@ if __name__ == "__main__":
     merge_control_first_run_pdfs(
         csv_path=Path("D:\Mateo\Results\experiments.csv"),
         export_dir=Path("notebooks/export"),
-        output_pdf=Path("notebooks/merged_controls_first_run.pdf")
+        output_pdf=Path("notebooks/merged_ACH_10uM.pdf")
     )

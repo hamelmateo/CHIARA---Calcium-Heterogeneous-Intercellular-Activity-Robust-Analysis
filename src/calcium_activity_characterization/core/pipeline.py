@@ -174,8 +174,8 @@ class CalciumPipeline:
         """
         #TODO: Complete docstring
         """
-        #if self.raw_cells_path.exists():
-        if False:  # Disable reloading for debugging purposes
+        if self.raw_cells_path.exists():
+        #if False:  # Disable reloading for debugging purposes
             self.population = load_pickle_file(self.raw_cells_path)
             return
 
@@ -367,8 +367,8 @@ class CalciumPipeline:
         Compute raw calcium traces for all cells in the population.
         If raw traces already exist, load them from file.
         """
-        #if self.raw_traces_path.exists():
-        if False:  # Disable reloading for debugging purposes
+        if self.raw_traces_path.exists():
+        #if False:  # Disable reloading for debugging purposes
             self.population = load_pickle_file(self.raw_traces_path)
             return
         
@@ -394,12 +394,15 @@ class CalciumPipeline:
 
         else:
             self.output_dir.mkdir(exist_ok=True, parents=True)
+            counter = 1
             for cell in self.population.cells:
+                print(counter)
                 cell.trace.process_and_plot_trace(
                     input_version="raw",
                     output_version="processed",
                     processing_params=self.config.cell_trace_processing
                 )
+                counter += 1
             save_pickle_file(self.population, self.processed_traces_path)
 
             plot_raster_heatmap(self.heatmap_raster_path, 
@@ -431,7 +434,7 @@ class CalciumPipeline:
                     [cell.trace.binary for cell in self.population.cells], 
                     self.config.cell_trace_processing.detrending.params.cut_trace_num_points
                     )
-        """
+        """"""
         # Select 10 random cells (or all if fewer than 10)
         sample_cells = random.sample(self.population.cells, min(10, len(self.population.cells)))
         self.config.cell_trace_processing.detrending.params.diagnostics_enabled = True
@@ -442,7 +445,7 @@ class CalciumPipeline:
             cell.trace.save_versions_as_svg(self.traces_processing_steps / f"{cell.label}_all_traces.svg")
             cell.trace.plot_binary_trace(self.traces_processing_steps / f"{cell.label}_binary_trace.svg")
             cell.trace.plot_peaks_over_trace(self.traces_processing_steps / f"{cell.label}_detected_peaks.svg")
-        """
+        
 
 
     def _initialize_activity_trace(self) -> None:
@@ -546,7 +549,7 @@ class CalciumPipeline:
                                         )
         
 
-
+        """"""
         # Global events early peakers mapping
         percent = 0.10
         overlap_early_peakers = Counter()
@@ -572,7 +575,7 @@ class CalciumPipeline:
                                vmin=0,
                                vmax=len([event for event in self.population.events if event.__class__.__name__ == "GlobalEvent"])
                                )
-
+        
         # Analyze multi-modal distribution in cell-cell communications speed
         speed_threshold = 45 # px/frame ~ 15 um/s
         high_speed_cells_all_comms, high_speed_cells, high_speed_origin_cells = self.population.map_high_cell_communication_speed(speed_threshold)

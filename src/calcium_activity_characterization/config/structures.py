@@ -218,6 +218,7 @@ class ImageProcessingConfig:
             pipeline=pipeline,
             padding_digits=payload.get("padding_digits", 5),
             roi_scale=payload.get("roi_scale", 0.75),
+            roi_centered=payload.get("roi_centered", True),
             hot_pixel_cleaning=hot_pixel_cleaning,
         )
 

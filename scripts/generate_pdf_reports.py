@@ -64,8 +64,8 @@ def main():
 
     args = argparse.Namespace(
         input_root="D:/Mateo",
-        notebook="notebooks/neurotransmitters_analysis.ipynb",
-        output_dir="notebooks/export-2"
+        notebook="notebooks/image_sequence_analysis.ipynb",
+        output_dir="notebooks/export"
         )
 
     for label, dataset_path in find_all_is_folders(Path(args.input_root)):

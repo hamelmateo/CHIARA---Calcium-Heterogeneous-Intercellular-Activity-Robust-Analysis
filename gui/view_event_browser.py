@@ -249,7 +249,7 @@ class EventViewer(QMainWindow):
                 if cell:
                     for peak in cell.trace.peaks:
                         if start <= peak.communication_time <= end:
-                            if peak.communication_time <= frame <= peak.activation_end_time:
+                            if peak.communication_time <= frame <=  peak.activation_end_time:
                                 for y, x in cell.pixel_coords:
                                     mask[y, x] = color
 

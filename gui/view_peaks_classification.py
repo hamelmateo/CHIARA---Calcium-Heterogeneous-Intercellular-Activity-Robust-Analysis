@@ -187,7 +187,7 @@ class SequentialSelectivityViewer(QMainWindow):
             elif active_peak.origin_type == 'caused' and self.show_caused.isChecked():
                 color = [255, 165, 0]
             elif active_peak.origin_type == 'individual' and self.show_individual.isChecked():
-                color = [0, 128, 255]
+                color = [44, 160, 44]
             if color is not None:
                 for y, x in cell.pixel_coords:
                     mask[y, x] = color

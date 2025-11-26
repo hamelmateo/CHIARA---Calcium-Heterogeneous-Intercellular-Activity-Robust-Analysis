@@ -51,7 +51,7 @@ HOECHST_IMAGE_PROCESSING_CONFIG = ImageProcessingConfig(
     ),
     padding_digits=5,
     roi_scale=0.75,
-    roi_centered=True,
+    roi_centered=False,
     hot_pixel_cleaning=HotPixelParameters(
         method=HotPixelMethod.CLIP,
         use_auto_threshold=False,
@@ -70,7 +70,7 @@ FITC_IMAGE_PROCESSING_CONFIG = ImageProcessingConfig(
     ),
     padding_digits=5,
     roi_scale=0.75,
-    roi_centered=True,
+    roi_centered=False,
     hot_pixel_cleaning=HOTPIXEL_CONFIG
 )
 
@@ -115,7 +115,7 @@ STANDARD_ZSCORE_SIGNAL_PROCESSING = SignalProcessingConfig(
     detrending=DetrendingConfig(
         method=DetrendingMethod.LOCALMINIMA,
         params=LocalMinimaParams(
-            cut_trace_num_points=100,
+            cut_trace_num_points=0,
 
             verbose=False,
             minima_detection_order=15,
@@ -123,9 +123,9 @@ STANDARD_ZSCORE_SIGNAL_PROCESSING = SignalProcessingConfig(
             edge_anchors_window=50,
             edge_anchors_delta=0.03,
 
-            filtering_shoulder_neighbor_dist=400,
+            filtering_shoulder_neighbor_dist=400, #TODO 400 as default
             filtering_shoulder_window=100,
-            filtering_angle_thresh_deg=10,
+            filtering_angle_thresh_deg=10, #TODO 10 as default
 
             crossing_correction_min_dist=10,
             crossing_correction_max_iterations=10,

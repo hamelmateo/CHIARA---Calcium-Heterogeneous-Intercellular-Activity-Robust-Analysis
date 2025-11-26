@@ -93,7 +93,8 @@ class LocalMinimaDetrender:
                 logger.info(f"After shoulder rejection: {len(self.anchor_indices)} kept, {len(discarded1)} discarded")
 
             angle_thresh = self.config.filtering_angle_thresh_deg
-            self.anchor_indices, discarded2 = self._filter_by_angle_valley(angle_thresh_deg=angle_thresh)
+            #self.anchor_indices, discarded2 = self._filter_by_angle_valley(angle_thresh_deg=angle_thresh)
+            discarded2 = []
             if self.verbose:
                 logger.info(f"After angle filtering: {len(self.anchor_indices)} kept, {len(discarded2)} discarded")
 

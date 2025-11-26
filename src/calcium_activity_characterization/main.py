@@ -3,9 +3,9 @@ from pathlib import Path
 
 from PyQt5.QtWidgets import QApplication, QFileDialog, QWidget
 
-from calcium_activity_characterization.logger import logger
-from calcium_activity_characterization.config.presets import GLOBAL_CONFIG
-from calcium_activity_characterization.core.pipeline import CalciumPipeline
+from logger import logger
+from config.presets import GLOBAL_CONFIG
+from core.pipeline import CalciumPipeline
 
 
 
